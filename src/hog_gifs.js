@@ -1,6 +1,15 @@
 const hogGifs = () => {
-  fetch('http://api.giphy.com/v1/gifs/random?api_key=lQzLqWXktAE007Z80dvEUNCkbGrTTF06&tag=pigs')
-  .then(resp => resp.json())
+  const params = {
+          "method": "GET",
+          "mode": 'no-cors',
+          "headers": {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+        }
+
+  fetch('http://api.giphy.com/v1/gifs/random?api_key=lQzLqWXktAE007Z80dvEUNCkbGrTTF06&tag=pigs', params)
+    .then(resp => resp.json())
 }
 
 
