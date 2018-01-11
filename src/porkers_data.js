@@ -91,5 +91,5 @@ const hogs = [
     'highest medal achieved': 'wood'
   }
 ];
-
+export const getAll = () => hogs;
 export default hogs;
