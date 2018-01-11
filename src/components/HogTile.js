@@ -21,6 +21,7 @@ const HogTile = (props) => {
       <h3>Greased: {greased ? 'yes' : 'no'}</h3>
       <h3>Highest Medal: {highestMedalAchieved}</h3>
       <h3>Weight: {weight}</h3>
+      <button onClick={props.hideHog}>Hide Hog</button>
     </div>
   )
 }

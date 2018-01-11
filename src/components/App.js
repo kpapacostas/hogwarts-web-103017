@@ -3,6 +3,7 @@ import '../App.css';
 import Nav from './Nav'
 import hogs from '../porkers_data'
 import HogHolder from './HogHolder'
+import hogGifs from '../hog_gifs'
 // console.log(hogs);
 class App extends Component {
   constructor(props){
@@ -12,8 +13,12 @@ class App extends Component {
       hogs,
       greased: hogs.filter(h => h.greased),
       ungreased: hogs.filter(h => !h.greased),
+      randGifUrl: "",
       filters: {
         type: 'all'
+      },
+      sort: {
+        type: 'none'
       }
     }
   }
@@ -24,20 +29,33 @@ class App extends Component {
     this.setState({filters: newType})
   }
 
-  // switch (this.state.filters.type){
-  //   case 'all':
-  //     this.setState
-  // }
+  handleSortChange = (sortType) => {
+    const newType = {type: sortType}
+
+    this.setState({sort: newType})
+  }
+
+  componentDidMount() {
+    hogGifs().then(json => this.setState({
+      randGifUrl: json.data.image_url
+    }))
+  }
+
+
 
   render() {
-    console.log(this.state.filters.type);
+    console.log(hogGifs);
+    console.log(this.state.randGifUrl);
     return (
       <div className="App">
           < Nav />
           < HogHolder
+          hogGifs={hogGifs}
           greased={this.state.greased}
           ungreased={this.state.ungreased}
           filter={this.state.filters.type}
+          sort={this.state.sort.type}
+          onSortChange={this.handleSortChange}
           onFilterChange={this.handleGreaseFilterChange}
           hogs={this.state.hogs}/>
       </div>
