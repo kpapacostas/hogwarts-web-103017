@@ -1,15 +1,25 @@
 import React from 'react'
 import HogTile from './HogTile'
+import Filters from './Filters'
 
 
 export default class HogHolder extends React.Component{
 
   render(){
     const {hogs} = this.props
-    console.log('hog holder', hogs);
 
     return(
-      < HogTile hog={hogs[3]} />
+      <div>
+        <Filters
+          onFilterChange={this.props.onFilterChange}
+          filter={this.props.filter}
+          />
+        <div>
+          {hogs.map(h => (
+            < HogTile hog={h} />
+          ))}
+        </div>
+      </div>
     )
   }
 }
